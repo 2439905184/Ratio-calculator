@@ -1,1 +1,1 @@
-nim c -d:release --opt:size main.nim 
+nim c -d:release -d:strip --opt:size main.nim 
