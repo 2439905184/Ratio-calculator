@@ -4,17 +4,21 @@ import std/math
 
 echo "--- 欢迎使用比例计算器 ---"
 echo "--- 请输入你要使用的功能"
-echo "0 计算等比乘法"
+echo "0 计算等比乘法(整数模式)"
 echo "1 计算比值并转换成最近整数比"
+echo "2 计算等比乘法（小数模式）"
 
-proc 等比乘法():void
+proc 等比乘法_整数模式():void
+proc 等比乘法_小数模式():void
 proc 最简整数比():void
 
 var select:int = parseInt(stdin.readLine())
 if select == 0:
-  等比乘法()
+  等比乘法_整数模式()
 elif select == 1:
   最简整数比()
+elif select == 2:
+  等比乘法_小数模式()
 else:
   echo "错误！不支持的选项"
   
@@ -26,8 +30,8 @@ proc fx(p1,p2:int):array[2,int] =
   answer[1] = int(p2 / c)
   return answer
 
-proc 等比乘法() = 
-  echo "请输入比率如4:3 就先输入一个4 回车 再输入3回车"
+proc 等比乘法_整数模式() = 
+  echo "请输入比率如4:3 就先输入一个 4 回车 再输入 3 回车"
   var a:int = parseInt(stdin.readLine())
   var b:int = parseInt(stdin.readLine())
   # 结果
@@ -43,6 +47,25 @@ proc 等比乘法() =
     f.write(fmt"{a1} {b1}" & "\n")
   f.close()
   echo "运算已完成: 请查看: 等比乘法结果.txt"
+
+proc 等比乘法_小数模式() = 
+  echo "请输入比率如4.5 : 3.5 就先输入一个 4.5 回车 再输入 3.5 回车"
+  var a:float = parseFloat(stdin.readLine())
+  var b:float = parseFloat(stdin.readLine())
+  # 结果
+  var a1:float = 0
+  var b1:float = 0
+  echo "请输入循环次数"
+  var times = parseInt(stdin.readLine())
+  var f:File = open("等比乘法结果.txt",fmWrite)
+  f.write(fmt"基础比例为: {a}:{b}" & "\n")
+  for index in 1..times:
+    a1 = a*float(index)
+    b1 = b*float(index)
+    f.write(fmt"{a1} {b1}" & "\n")
+  f.close()
+  echo "运算已完成: 请查看: 等比乘法结果.txt"
+
 
 # 利用格式输入语句将输入的两个数分别赋给 a 和 b，然后判断 a 和 b 的关系，如果 a 小于 b，则利用中间变量 t 将其互换。再利用辗转相除法求出最大公约数，进而求出最小公倍数。最后用格式输出语句将其输出。
 proc 最简整数比() = 
