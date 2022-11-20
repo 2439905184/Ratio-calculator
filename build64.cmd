@@ -1,0 +1,1 @@
+nim c -d:release -d:strip --opt:size -o:main64.exe --cpu:amd64 --outdir:dist main.nim 

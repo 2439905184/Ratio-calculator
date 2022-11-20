@@ -1,0 +1,1 @@
+build32.cmd && build64.cmd

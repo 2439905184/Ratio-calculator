@@ -1,0 +1,1 @@
+nim c -d:release -d:strip --opt:size -o:main32.exe --cpu:i386 --outdir:dist main.nim 
